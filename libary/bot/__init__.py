@@ -26,9 +26,18 @@ class Bot(BotBase):
         self.scheduler = AsyncIOScheduler
         
         super().__init__(command_prefix=get_prefix, owner_ids=OWNER_IDS)
-        
+    
+    def setup(self):
+        extentions = [
+            "libary.cogs.meta"
+        ]
+        for ext in extentions:
+            self.load_extension(ext)
+    
     def run(self, version):
         self.VERSION = version
+        
+        self.setup()
         
         print("Running setup")
         
@@ -36,7 +45,7 @@ class Bot(BotBase):
             self.TOKEN = f.read()
         
         print("running bot...")
-        super().run(self.TOKEN, reconnected=True)
+        super().run(self.TOKEN)
     
     async def process_commands(self, message):
         ctx = await self.get_context(message, cls=Context)
@@ -53,5 +62,21 @@ class Bot(BotBase):
     
     async def on_disconnect(self):
         print("bot disconntected...")
+    
+    async def on_ready(self):
+        if not self.ready:
+            self.guild = self.get_guild(749324744901263470)
+            self.stdout = self.get_channel(749324797975986206)
+
+
+            await self.stdout.send("Now online!")
+            self.ready = True
+            print(" bot ready")
+
+            meta = self.get_cog("Meta")
+            await meta.set()
+
+        else:
+            print("bot reconnected")
         
 bot = Bot()
