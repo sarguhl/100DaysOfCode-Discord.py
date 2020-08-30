@@ -76,6 +76,6 @@ class Meta(Cog):
 		#self.bot.scheduler.shutdown()
 		await self.bot.logout()
 
-
+ 
 def setup(bot):
 	bot.add_cog(Meta(bot))

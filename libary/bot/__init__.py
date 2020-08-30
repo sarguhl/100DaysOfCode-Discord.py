@@ -29,10 +29,13 @@ class Bot(BotBase):
     
     def setup(self):
         extentions = [
-            "libary.cogs.meta"
+            "libary.cogs.meta",
+            "libary.cogs.info",
+            "libary.cogs.logging"
         ]
         for ext in extentions:
             self.load_extension(ext)
+            print(f"Cog ready: {ext}")
     
     def run(self, version):
         self.VERSION = version
@@ -63,6 +66,28 @@ class Bot(BotBase):
     async def on_disconnect(self):
         print("bot disconntected...")
     
+    async def on_error(self, err, *args, **kwargs):
+        if err == "on_command_error":
+            await args[0].send("Something went wrong!")
+        
+        await self.stdout.send("An error occured.")
+        raise    
+
+    async def on_command_error(self, ctx, exc):
+        if any ([isinstance(exc, error) for error in IGNORE_EXCEPTIONS]):
+            pass
+        elif isinstance(exc, MissingRequiredArgument):
+            await ctx.send("`Error`: One or more requred arguments are missing.")
+        elif isinstance(exc, CommandOnCooldown):
+            await ctx.send(f"That command is on {str(exc.cooldown.type).split('.')[-1]} cooldown. Try again in {exc.retry_after:,.2f} secs.")
+        elif hasattr(exc, "original"):
+            if isinstance(exc.original, Forbidden):
+                await ctx.send("I don't have the required permissions to do this.")
+            else:
+                raise exc.original
+        else:
+            raise exc
+
     async def on_ready(self):
         if not self.ready:
             self.guild = self.get_guild(749324744901263470)
@@ -73,7 +98,7 @@ class Bot(BotBase):
             self.ready = True
             print(" bot ready")
 
-            meta = self.get_cog("Meta")
+            meta = self.get_cog("Meta")   
             await meta.set()
 
         else:
