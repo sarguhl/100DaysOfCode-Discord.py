@@ -31,7 +31,8 @@ class Bot(BotBase):
         extentions = [
             "libary.cogs.meta",
             "libary.cogs.info",
-            "libary.cogs.logging"
+            "libary.cogs.logging",
+            "libary.cogs.livesupport"
         ]
         for ext in extentions:
             self.load_extension(ext)
@@ -49,16 +50,7 @@ class Bot(BotBase):
         
         print("running bot...")
         super().run(self.TOKEN)
-    
-    async def process_commands(self, message):
-        ctx = await self.get_context(message, cls=Context)
-        
-        if ctx.command is not None and ctx.guild is not None:
-            if self.ready:
-                await self.invoke(ctx)
-            
-            else:
-                await ctx.send("I'm not ready to process any commands. Please wait a second.")
+
     
     async def on_connect(self):
         print("bot connected...")

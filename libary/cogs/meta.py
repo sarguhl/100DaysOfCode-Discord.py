@@ -47,7 +47,7 @@ class Meta(Cog):
 		message = await ctx.send(f"Pong! DWSP latency: {self.bot.latency*1000:,.0f} ms.")
 		end = time()
 
-		await message.edit(content=f"Pong! DWSP latency: {self.bot.latency*1000:,.0f} ms. Response time: {(end-start)*1000:,.0f} ms.")
+		await message.edit(content=f"latency: {self.bot.latency*1000:,.0f} ms. Resp time: {(end-start)*1000:,.0f} ms.")
 
 	@command(name="stats")
 	async def show_bot_stats(self, ctx):
