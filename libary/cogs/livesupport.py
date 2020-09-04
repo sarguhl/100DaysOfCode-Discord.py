@@ -1,7 +1,7 @@
 from discord.ext import commands
 from discord.ext.commands import Cog, command
 
-from discord import Embed
+from discord import Embed, Member
 from discord.channel import DMChannel
 from datetime import datetime
 
@@ -46,9 +46,7 @@ class Livesupport(Cog):
                     await message.channel.send("Message sent to the Support.")
 
     @command(name="pn")
-    async def pn_command(self, user_id, *, message):
-        member = self.bot.get_member(user_id)
-        await member.send(message)
-
+    async def pn_command(self, ctx, member: Member, *, message):
+        await member.send(f"**{ctx.author.display_name}**: {message}")
 def setup(bot):
     bot.add_cog(Livesupport(bot))

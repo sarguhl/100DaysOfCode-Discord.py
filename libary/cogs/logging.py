@@ -99,17 +99,24 @@ class Log(Cog):
     @Cog.listener()
     async def on_message_delete(self, message):
         if not message.author.bot:
-            embed = Embed(title="Message deletion",
-                            description=f"Action by {message.author.display_name}.",
-                            colour=message.author.colour,
-                            timestamp=datetime.utcnow())
+            if message.content.startswith('!clear'):
+                embed = Embed(
+                    title="Clear command",
+                    description=f"Clear command by: {message.author.name}"
+                )
+                await self.log_channel.send(embed=embed)
+            else:
+                embed = Embed(title="Message deletion",
+                                description=f"Action by {message.author.display_name}.",
+                                colour=message.author.colour,
+                                timestamp=datetime.utcnow())
 
-            fields = [("Content", message.content, False)]
+                fields = [("Content", message.content, False)]
 
-            for name, value, inline in fields:
-                embed.add_field(name=name, value=value, inline=inline)
+                for name, value, inline in fields:
+                    embed.add_field(name=name, value=value, inline=inline)
 
-            await self.log_channel.send(embed=embed)
+                await self.log_channel.send(embed=embed)
 
 
 def setup(bot):
