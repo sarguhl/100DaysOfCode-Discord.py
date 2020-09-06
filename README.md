@@ -18,3 +18,7 @@ Also, yesterday some bugs appeared with live support. They got fixed, yay! I als
 **Day 6**: Ha nice! I actually just had to fix one bug today. Anyway, I added a welcome message that will greet the user in a specific channel. It has an randome welcome sentence and some fu  facts from an API. Also, it has an random generated Embed colour.
 
 **Day 7**: Well actually I had to fix a few bugs. But now we got a cool and smooth clear command. I also updated the GitHub-repo
+
+**Day 8**: Today I opened up a new file for fun commands. The first command I made was a dice command. It was really hard because there's more logical stuff in it than you think. But it works!
+
+**Day 9**: After some cool bugfixing, I added two other commands (wokring with APIs) 

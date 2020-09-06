@@ -35,7 +35,8 @@ class Bot(BotBase):
             "libary.cogs.livesupport",
             "libary.cogs.help",
             "libary.cogs.moderation",
-            "libary.cogs.welcome"
+            "libary.cogs.welcome",
+            "libary.cogs.fun"
         ]
         for ext in extentions:
             self.load_extension(ext)

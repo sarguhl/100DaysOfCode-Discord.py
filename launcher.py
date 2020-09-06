@@ -1,5 +1,5 @@
 from libary.bot import bot
 
-VERSION = "0.5.4"
+VERSION = "0.6.2"
 
 bot.run(VERSION)

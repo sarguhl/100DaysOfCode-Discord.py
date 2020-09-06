@@ -11,7 +11,7 @@ class Log(Cog):
     async def on_ready(self):
         if not self.bot.ready:
             self.log_channel = self.bot.get_channel(749533434963165235)
-    
+
     @Cog.listener()
     async def on_user_update(self, before, after):
         if before.name != after.name:
