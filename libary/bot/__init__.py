@@ -12,6 +12,8 @@ from discord.ext.commands import (CommandNotFound, BadArgument, MissingRequiredA
 
 from discord.ext.commands import when_mentioned_or, command, has_permissions
 
+from ..db import db
+
 OWNER_IDS = []
 IGNORE_EXCEPTIONS = (CommandNotFound, BadArgument)
 

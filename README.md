@@ -22,3 +22,5 @@ Also, yesterday some bugs appeared with live support. They got fixed, yay! I als
 **Day 8**: Today I opened up a new file for fun commands. The first command I made was a dice command. It was really hard because there's more logical stuff in it than you think. But it works!
 
 **Day 9**: After some cool bugfixing, I added two other commands (wokring with APIs) 
+
+**Day 10**: Yuhu, the first 10 days are passed! Today I made a few bug fixes. Nothing much, but at least something. 

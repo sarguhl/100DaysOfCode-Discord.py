@@ -6,7 +6,6 @@ from discord import Embed, Member
 from discord.ext.commands import Cog, BucketType
 from discord.ext.commands import command, cooldown, BadArgument
 
-
 random_color = [
     0x374DAD,
     0x376EA8,
@@ -18,6 +17,14 @@ random_color = [
 class Fun(Cog):
     def __init__(self, bot):
         self.bot = bot
+    
+    @command(name="hello")
+    async def hello_command(self, ctx):
+        await ctx.send(f"{choice['Hello', 'hi', 'hyia']} {ctx.author.mention}!")
+    
+    @command(name="slap")
+    async def slap_command(self, ctx, member: Member, *, reason: Optional[str] = "for no reason"):
+        await ctx.send(f"{ctx.author.mention} slapped {member.mention} {reason}")
     
     @command(name="meme")
     async def meme(self, ctx):
